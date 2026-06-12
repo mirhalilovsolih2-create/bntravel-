@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BN Travel — Luxury Journeys</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9973A;
+    --gold-light: #E8B85A;
+    --gold-dark: #8B6520;
+    --dark: #0D0D0D;
+    --dark-2: #1A1A1A;
+    --dark-3: #252525;
+    --text: #F5F0E8;
+    --text-muted: rgba(245,240,232,0.6);
+    --white: #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(13,13,13,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(201,151,58,0.15);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-logo-badge {
+    width: 40px; height: 40px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+
+  .nav-logo-text {
+    line-height: 1.2;
+  }
+
+  .nav-logo-text strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .nav-logo-text span {
+    display: block;
+    font-size: 9px;
+    color: var(--gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gold);
+    color: var(--dark) !important;
+    padding: 10px 22px;
+    border-radius: 100px;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.3px;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+
+  .nav-cta:hover { background: var(--gold-light) !important; transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(13,13,13,0.3) 0%, rgba(13,13,13,0.5) 60%, rgba(13,13,13,0.95) 100%),
+      linear-gradient(135deg, #1a2a1a 0%, #0d1a2a 40%, #1a1500 100%);
+  }
+
+  .hero-visual {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.25;
+  }
+
+  .hero-visual svg { width: 100%; height: 100%; }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 24px;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(201,151,58,0.4);
+    border-radius: 100px;
+    padding: 6px 18px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 7vw, 88px);
+    font-weight: 400;
+    line-height: 1.05;
+    margin-bottom: 24px;
+    color: var(--white);
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-subtitle {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 520px;
+    margin: 0 auto 44px;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--dark);
+    padding: 14px 32px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s, transform 0.15s;
+    letter-spacing: 0.3px;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    padding: 13px 32px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(245,240,232,0.25);
+    transition: border-color 0.2s, transform 0.15s;
+  }
+
+  .btn-ghost:hover { border-color: rgba(245,240,232,0.5); transform: translateY(-2px); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    z-index: 2;
+    animation: bounce 2s infinite;
+  }
+
+  .hero-scroll::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* STATS */
+  .stats {
+    background: var(--dark-2);
+    border-top: 1px solid rgba(201,151,58,0.15);
+    border-bottom: 1px solid rgba(201,151,58,0.15);
+    padding: 48px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+
+  .stat {
+    text-align: center;
+    padding: 24px 32px;
+    border-right: 1px solid rgba(201,151,58,0.12);
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 100px 48px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .section-desc {
+    font-size: 16px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 560px;
+    font-weight: 300;
+  }
+
+  /* DESTINATIONS */
+  .destinations-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 56px;
+  }
+
+  .dest-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    cursor: pointer;
+    transition: transform 0.3s;
+    background: var(--dark-3);
+  }
+
+  .dest-card:hover { transform: translateY(-6px); }
+  .dest-card:first-child { grid-row: span 2; aspect-ratio: auto; }
+
+  .dest-card-bg {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.4s;
+  }
+
+  .dest-card:hover .dest-card-bg { transform: scale(1.04); }
+
+  .dest-card-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(13,13,13,0.9) 0%, rgba(13,13,13,0.1) 60%);
+  }
+
+  .dest-card-content {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 24px;
+  }
+
+  .dest-tag {
+    display: inline-block;
+    background: rgba(201,151,58,0.2);
+    border: 1px solid rgba(201,151,58,0.4);
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-bottom: 10px;
+  }
+
+  .dest-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .dest-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  .dest-price {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .dest-price strong {
+    color: var(--gold);
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* SVG illustrations for destination cards */
+  .dest-svg {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 56px;
+    border: 1px solid rgba(201,151,58,0.12);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .service-item {
+    padding: 40px 36px;
+    background: var(--dark-2);
+    border-right: 1px solid rgba(201,151,58,0.12);
+    border-bottom: 1px solid rgba(201,151,58,0.12);
+    transition: background 0.2s;
+  }
+
+  .service-item:hover { background: var(--dark-3); }
+
+  .service-icon {
+    width: 52px; height: 52px;
+    border: 1px solid rgba(201,151,58,0.3);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .service-icon svg { width: 24px; height: 24px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+
+  .service-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+
+  .service-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* FEATURED TOURS */
+  .tours-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 56px;
+  }
+
+  .tours-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .tour-card {
+    background: var(--dark-2);
+    border: 1px solid rgba(201,151,58,0.12);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+    cursor: pointer;
+  }
+
+  .tour-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(201,151,58,0.35);
+  }
+
+  .tour-img {
+    height: 240px;
+    background: var(--dark-3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tour-badge {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: var(--gold);
+    color: var(--dark);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 100px;
+  }
+
+  .tour-body {
+    padding: 24px;
+  }
+
+  .tour-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+  }
+
+  .tour-meta span { display: flex; align-items: center; gap: 5px; }
+
+  .tour-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .tour-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+
+  .tour-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    border-top: 1px solid rgba(201,151,58,0.1);
+  }
+
+  .tour-price-label { font-size: 11px; color: var(--text-muted); letter-spacing: 1px; }
+  .tour-price-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  .tour-book {
+    background: transparent;
+    border: 1px solid rgba(201,151,58,0.4);
+    color: var(--gold);
+    padding: 10px 20px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    letter-spacing: 0.5px;
+  }
+
+  .tour-book:hover { background: var(--gold); color: var(--dark); }
+
+  /* TESTIMONIALS */
+  .testimonials-section {
+    background: var(--dark-2);
+    border-top: 1px solid rgba(201,151,58,0.1);
+    border-bottom: 1px solid rgba(201,151,58,0.1);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 56px;
+  }
+
+  .testimonial-card {
+    background: var(--dark-3);
+    border: 1px solid rgba(201,151,58,0.1);
+    border-radius: 16px;
+    padding: 32px;
+  }
+
+  .stars {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 16px;
+  }
+
+  .star { color: var(--gold); font-size: 14px; }
+
+  .testimonial-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .author-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--dark-2);
+    border: 1px solid rgba(201,151,58,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  .author-name { font-size: 14px; font-weight: 600; color: var(--white); }
+  .author-origin { font-size: 12px; color: var(--text-muted); }
+
+  /* BOOKING FORM */
+  .booking-section {
+    background: linear-gradient(135deg, #1a1200 0%, #0d0d0d 50%, #0a1a0a 100%);
+    padding: 100px 48px;
+  }
+
+  .booking-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .booking-form {
+    background: var(--dark-2);
+    border: 1px solid rgba(201,151,58,0.2);
+    border-radius: 20px;
+    padding: 40px;
+  }
+
+  .form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: var(--white);
+    margin-bottom: 28px;
+    font-weight: 400;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group.full { grid-column: span 2; }
+
+  .form-label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .form-input {
+    background: var(--dark-3);
+    border: 1px solid rgba(201,151,58,0.15);
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: var(--text);
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-input:focus { border-color: rgba(201,151,58,0.5); }
+  .form-input option { background: var(--dark-3); }
+
+  .form-submit {
+    width: 100%;
+    background: var(--gold);
+    color: var(--dark);
+    border: none;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s;
+    letter-spacing: 0.5px;
+  }
+
+  .form-submit:hover { background: var(--gold-light); }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid rgba(201,151,58,0.12);
+    padding: 60px 48px 40px;
+  }
+
+  .footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+
+  .footer-brand p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-top: 16px;
+    font-weight: 300;
+    max-width: 260px;
+  }
+
+  .footer-col h4 {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+  .footer-col ul li a {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 300;
+    transition: color 0.2s;
+  }
+
+  .footer-col ul li a:hover { color: var(--text); }
+
+  .footer-bottom {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-top: 32px;
+    border-top: 1px solid rgba(201,151,58,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  /* ICONS inline SVG shorthand */
+  .ico { display: inline-block; vertical-align: middle; }
+
+  /* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+/* TABLET */
+@media (max-width: 1024px) {
+
+  nav {
+    padding: 16px 24px;
+  }
+
+  .nav-links {
+    gap: 18px;
+    font-size: 12px;
+  }
+
+  section {
+    padding: 80px 24px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .destinations-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tours-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .hero {
+    height: auto;
+    padding: 140px 20px 80px;
+  }
+
+  .hero-title {
+    font-size: 42px;
+  }
+
+  .hero-subtitle {
+    font-size: 14px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+    padding: 24px;
+  }
+
+  .destinations-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-item {
+    border-right: none;
+  }
+
+  .tours-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-form {
+    padding: 24px;
+  }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 480px) {
+
+  nav {
+    padding: 12px 16px;
+  }
+
+  .hero-title {
+    font-size: 34px;
+  }
+
+  .section-title {
+    font-size: 28px;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .tour-price-value {
+    font-size: 20px;
+  }
+
+  .dest-name {
+    font-size: 22px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-badge">BN</div>
+    <div class="nav-logo-text">
+      <strong>BN Travel</strong>
+      <span>Luxury Journeys</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">Главная</a></li>
+    <li><a href="#tours">Туры</a></li>
+    <li><a href="#destinations">Направления</a></li>
+    <li><a href="#">Горящие туры</a></li>
+    <li><a href="#services">Услуги</a></li>
+    <li><a href="#about">О нас</a></li>
+    <li><a href="#reviews">Отзывы</a></li>
+    <li><a href="" class="nav-cta">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18 2 2 0 0 1 2.96 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16z"/></svg>
+      +998 95 822 87 88
+    </a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="max-width:100%; padding:0;">
+  <div class="hero-bg"></div>
+
+  <!-- decorative plane SVG in background -->
+  <div class="hero-visual">
+    <svg viewBox="0 0 1440 800" xmlns="http://www.w3.org/2000/svg">
+      <!-- tropical island shapes -->
+      <ellipse cx="200" cy="680" rx="260" ry="80" fill="#1a3a1a" opacity="0.6"/>
+      <ellipse cx="1300" cy="720" rx="200" ry="60" fill="#1a3a1a" opacity="0.5"/>
+      <ellipse cx="800" cy="750" rx="350" ry="70" fill="#0d2a0d" opacity="0.4"/>
+      <!-- ocean shimmer -->
+      <rect x="0" y="600" width="1440" height="200" fill="#0a1a2a" opacity="0.5"/>
+      <!-- palm tree left -->
+      <line x1="140" y1="680" x2="155" y2="560" stroke="#2a4a2a" stroke-width="6"/>
+      <ellipse cx="142" cy="558" rx="50" ry="22" fill="#1a3a1a" transform="rotate(-20,142,558)"/>
+      <ellipse cx="168" cy="548" rx="50" ry="18" fill="#1a3a1a" transform="rotate(15,168,548)"/>
+      <!-- private jet -->
+      <g transform="translate(560,280) rotate(-8)">
+        <path d="M0,0 L320,0 Q360,-8 360,8 Q360,24 320,16 L0,16 Z" fill="#2a2a2a" opacity="0.8"/>
+        <path d="M40,0 L40,-60 Q100,-80 200,-30 L200,0 Z" fill="#252525" opacity="0.8"/>
+        <path d="M40,16 L40,55 Q80,65 160,40 L160,16 Z" fill="#1e1e1e" opacity="0.7"/>
+        <circle cx="280" cy="8" r="6" fill="#C9973A" opacity="0.9"/>
+        <rect x="60" y="2" width="80" height="12" rx="3" fill="#C9973A" opacity="0.3"/>
+      </g>
+      <!-- clouds -->
+      <ellipse cx="900" cy="200" rx="120" ry="35" fill="#ffffff" opacity="0.05"/>
+      <ellipse cx="950" cy="210" rx="90" ry="28" fill="#ffffff" opacity="0.04"/>
+      <ellipse cx="300" cy="150" rx="80" ry="25" fill="#ffffff" opacity="0.04"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Премиальное агентство путешествий</div>
+    <h1 class="hero-title">
+      Путешествуйте<br>по миру с <em>комфортом</em>
+    </h1>
+    <p class="hero-subtitle">
+      Премиальные путешествия по всему миру — авторские туры, частные перелёты и сервис без компромиссов.
+    </p>
+    <div class="hero-actions">
+      <a href="#booking" class="btn-primary">
+        Забронировать
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#tours" class="btn-ghost">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Смотреть туры
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">Листать</div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-number">12+</div>
+    <div class="stat-label">Лет опыта</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">3 400</div>
+    <div class="stat-label">Довольных клиентов</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">85</div>
+    <div class="stat-label">Направлений</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">98%</div>
+    <div class="stat-label">Возвращаются снова</div>
+  </div>
+</div>
+
+<!-- DESTINATIONS -->
+<section id="destinations">
+  <div class="section-eyebrow">Направления</div>
+  <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+    <div>
+      <h2 class="section-title">Откройте для себя<br><em>лучшие уголки</em> планеты</h2>
+    </div>
+    <p class="section-desc" style="font-size:14px;">Мы отобрали самые захватывающие направления для ваших незабываемых путешествий.</p>
+  </div>
+
+  <div class="destinations-grid">
+
+    <!-- Maldives big card -->
+    <div class="dest-card" style="min-height: 480px;">
+      <div class="dest-card-bg">
+        <svg viewBox="0 0 400 700" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <rect width="400" height="700" fill="#0a2a3a"/>
+          <!-- ocean gradient -->
+          <rect y="300" width="400" height="400" fill="#0d3a4a"/>
+          <!-- sky -->
+          <rect width="400" height="300" fill="#1a2a4a"/>
+          <!-- sunset glow -->
+          <ellipse cx="200" cy="300" rx="300" ry="80" fill="#C9973A" opacity="0.3"/>
+          <!-- island -->
+          <ellipse cx="200" cy="560" rx="160" ry="40" fill="#1a3a1a"/>
+          <ellipse cx="200" cy="550" rx="140" ry="30" fill="#2a4a2a"/>
+          <!-- palm trees -->
+          <line x1="160" y1="550" x2="150" y2="440" stroke="#1a2a1a" stroke-width="5"/>
+          <ellipse cx="145" cy="440" rx="45" ry="18" fill="#1a3a1a" transform="rotate(-15,145,440)"/>
+          <ellipse cx="162" cy="432" rx="40" ry="15" fill="#2a4a1a" transform="rotate(10,162,432)"/>
+          <line x1="240" y1="545" x2="255" y2="435" stroke="#1a2a1a" stroke-width="5"/>
+          <ellipse cx="260" cy="435" rx="40" ry="16" fill="#1a3a1a" transform="rotate(15,260,435)"/>
+          <!-- overwater bungalow -->
+          <rect x="160" y="520" width="80" height="40" rx="4" fill="#2a1a0a"/>
+          <polygon points="150,520 250,520 200,490" fill="#3a2a0a"/>
+          <!-- water shimmer -->
+          <line x1="0" y1="580" x2="400" y2="580" stroke="#C9973A" stroke-width="0.5" opacity="0.3"/>
+          <line x1="0" y1="600" x2="400" y2="600" stroke="#C9973A" stroke-width="0.5" opacity="0.2"/>
+          <line x1="0" y1="620" x2="400" y2="620" stroke="#C9973A" stroke-width="0.5" opacity="0.15"/>
+          <!-- stars -->
+          <circle cx="80" cy="80" r="1" fill="#ffffff" opacity="0.8"/>
+          <circle cx="150" cy="50" r="1.5" fill="#ffffff" opacity="0.7"/>
+          <circle cx="300" cy="100" r="1" fill="#ffffff" opacity="0.6"/>
+          <circle cx="350" cy="60" r="1" fill="#ffffff" opacity="0.8"/>
+          <circle cx="50" cy="150" r="1" fill="#ffffff" opacity="0.5"/>
+          <circle cx="320" cy="180" r="1" fill="#ffffff" opacity="0.6"/>
+        </svg>
+      </div>
+      <div class="dest-card-gradient"></div>
+      <div class="dest-card-content">
+        <div class="dest-tag">Популярно</div>
+        <div class="dest-name">Мальдивы</div>
+        <div class="dest-sub">Роскошные виллы над водой</div>
+        <div class="dest-price">от <strong>$4 200</strong> / чел.</div>
+      </div>
+    </div>
+
+    <!-- Dubai -->
+    <div class="dest-card">
+      <div class="dest-card-bg">
+        <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <rect width="400" height="280" fill="#1a1500"/>
+          <!-- sky -->
+          <rect width="400" height="180" fill="#0a1a2a"/>
+          <!-- burj khalifa silhouette -->
+          <rect x="190" y="30" width="20" height="180" fill="#252525"/>
+          <polygon points="190,30 200,10 210,30" fill="#252525"/>
+          <rect x="183" y="80" width="34" height="10" fill="#1a1a1a"/>
+          <rect x="178" y="110" width="44" height="8" fill="#1a1a1a"/>
+          <!-- other buildings -->
+          <rect x="120" y="100" width="30" height="110" fill="#1e1e1e"/>
+          <rect x="100" y="130" width="22" height="80" fill="#1a1a1a"/>
+          <rect x="250" y="110" width="35" height="100" fill="#1e1e1e"/>
+          <rect x="285" y="140" width="25" height="70" fill="#1a1a1a"/>
+          <rect x="60" y="150" width="40" height="60" fill="#181818"/>
+          <!-- ground / road -->
+          <rect y="210" width="400" height="70" fill="#0d0d0d"/>
+          <line x1="0" y1="240" x2="400" y2="240" stroke="#C9973A" stroke-width="0.5" opacity="0.4"/>
+          <!-- windows glow -->
+          <rect x="125" y="105" width="3" height="3" fill="#C9973A" opacity="0.6"/>
+          <rect x="132" y="115" width="3" height="3" fill="#C9973A" opacity="0.4"/>
+          <rect x="255" y="115" width="3" height="3" fill="#C9973A" opacity="0.5"/>
+          <rect x="263" y="125" width="3" height="3" fill="#C9973A" opacity="0.3"/>
+          <!-- moon -->
+          <circle cx="340" cy="60" r="18" fill="#1a2a3a"/>
+          <circle cx="348" cy="55" r="15" fill="#0a1a2a"/>
+        </svg>
+      </div>
+      <div class="dest-card-gradient"></div>
+      <div class="dest-card-content">
+        <div class="dest-tag">Бизнес-класс</div>
+        <div class="dest-name">Дубай</div>
+        <div class="dest-sub">Город будущего</div>
+        <div class="dest-price">от <strong>$1 800</strong> / чел.</div>
+      </div>
+    </div>
+
+    <!-- Santorini -->
+    <div class="dest-card">
+      <div class="dest-card-bg">
+        <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <rect width="400" height="280" fill="#1a1a2a"/>
+          <!-- sea -->
+          <rect y="160" width="400" height="120" fill="#0a1a3a"/>
+          <!-- sky gradient sunset -->
+          <rect width="400" height="160" fill="#1a0a1a"/>
+          <ellipse cx="350" cy="100" rx="200" ry="80" fill="#3a1a0a" opacity="0.5"/>
+          <!-- white buildings -->
+          <rect x="80" y="90" width="50" height="80" rx="4" fill="#f0ede8"/>
+          <rect x="80" y="70" width="50" height="25" rx="25" fill="#e8e5e0"/>
+          <!-- blue dome -->
+          <ellipse cx="105" cy="70" rx="30" ry="15" fill="#1a3a6a"/>
+          <rect x="140" y="110" width="40" height="60" rx="3" fill="#e8e5e0"/>
+          <rect x="185" y="120" width="35" height="50" rx="3" fill="#f0ede8"/>
+          <rect x="220" y="100" width="45" height="70" rx="4" fill="#e8e5e0"/>
+          <ellipse cx="242" cy="100" rx="25" ry="12" fill="#1a3a6a"/>
+          <!-- windows blue -->
+          <rect x="90" y="100" width="10" height="10" rx="2" fill="#1a3a6a"/>
+          <rect x="110" y="100" width="10" height="10" rx="2" fill="#1a3a6a"/>
+          <rect x="90" y="130" width="10" height="10" rx="2" fill="#1a3a6a"/>
+          <!-- cliff face -->
+          <path d="M0,160 Q50,130 100,160 Q150,180 200,160 Q250,140 300,155 Q350,165 400,150 L400,280 L0,280 Z" fill="#2a1a0a"/>
+          <!-- sea shimmer -->
+          <line x1="0" y1="200" x2="400" y2="200" stroke="#4a7aaa" stroke-width="0.5" opacity="0.3"/>
+          <line x1="0" y1="220" x2="400" y2="220" stroke="#4a7aaa" stroke-width="0.5" opacity="0.2"/>
+        </svg>
+      </div>
+      <div class="dest-card-gradient"></div>
+      <div class="dest-card-content">
+        <div class="dest-tag">Романтика</div>
+        <div class="dest-name">Санторини</div>
+        <div class="dest-sub">Магия Эгейского моря</div>
+        <div class="dest-price">от <strong>$2 600</strong> / чел.</div>
+      </div>
+    </div>
+
+    <!-- Tokyo -->
+    <div class="dest-card">
+      <div class="dest-card-bg">
+        <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <rect width="400" height="280" fill="#0d0d0d"/>
+          <!-- night sky -->
+          <rect width="400" height="200" fill="#080814"/>
+          <!-- tokyo tower -->
+          <polygon points="195,30 205,30 215,200 185,200" fill="#E8B85A" opacity="0.9"/>
+          <rect x="192" y="80" width="16" height="5" fill="#C9973A"/>
+          <rect x="188" y="120" width="24" height="5" fill="#C9973A"/>
+          <polygon points="197,28 200,15 203,28" fill="#E8B85A"/>
+          <!-- neon signs glow -->
+          <rect x="50" y="130" width="60" height="70" fill="#0a0a1a"/>
+          <rect x="55" y="135" width="50" height="5" fill="#ff2a5a" opacity="0.7"/>
+          <rect x="55" y="145" width="40" height="3" fill="#2af5ff" opacity="0.5"/>
+          <rect x="120" y="120" width="40" height="80" fill="#0a0a1a"/>
+          <rect x="125" y="125" width="30" height="4" fill="#ff2a5a" opacity="0.6"/>
+          <rect x="250" y="110" width="80" height="90" fill="#0a0a14"/>
+          <rect x="255" y="115" width="60" height="4" fill="#C9973A" opacity="0.8"/>
+          <rect x="255" y="125" width="45" height="3" fill="#ffffff" opacity="0.3"/>
+          <!-- street level -->
+          <rect y="200" width="400" height="80" fill="#050505"/>
+          <!-- street lights -->
+          <circle cx="100" cy="195" r="4" fill="#C9973A" opacity="0.7"/>
+          <circle cx="200" cy="195" r="4" fill="#C9973A" opacity="0.7"/>
+          <circle cx="300" cy="195" r="4" fill="#C9973A" opacity="0.7"/>
+          <!-- stars -->
+          <circle cx="30" cy="30" r="1" fill="#ffffff" opacity="0.5"/>
+          <circle cx="370" cy="50" r="1" fill="#ffffff" opacity="0.4"/>
+          <circle cx="280" cy="20" r="1" fill="#ffffff" opacity="0.6"/>
+        </svg>
+      </div>
+      <div class="dest-card-gradient"></div>
+      <div class="dest-card-content">
+        <div class="dest-tag">Экзотика</div>
+        <div class="dest-name">Токио</div>
+        <div class="dest-sub">Будущее и традиции</div>
+        <div class="dest-price">от <strong>$3 100</strong> / чел.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" style="background: var(--dark-2); padding: 100px 48px; max-width: 100%;">
+  <div style="max-width: 1280px; margin: 0 auto;">
+    <div class="section-eyebrow">Наши услуги</div>
+    <h2 class="section-title">Всё включено для<br><em>идеального</em> путешествия</h2>
+    <div class="services-grid">
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+        </div>
+        <div class="service-title">Частные перелёты</div>
+        <div class="service-desc">Бизнес и первый класс, аренда частных джетов. Ваш комфорт с первых минут путешествия.</div>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+        </div>
+        <div class="service-title">Персональный менеджер</div>
+        <div class="service-desc">Личный консьерж 24/7 для решения любых вопросов до, во время и после поездки.</div>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>
+        </div>
+        <div class="service-title">Роскошные отели</div>
+        <div class="service-desc">Только 5-звёздочные отели и бутик-резорты с эксклюзивными условиями для клиентов BN Travel.</div>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        </div>
+        <div class="service-title">Авторские маршруты</div>
+        <div class="service-desc">Уникальные программы, разработанные нашими экспертами с учётом ваших желаний и интересов.</div>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+        </div>
+        <div class="service-title">Страхование и безопасность</div>
+        <div class="service-desc">Комплексное страхование и круглосуточная поддержка для полного спокойствия в путешествии.</div>
+      </div>
+      <div class="service-item" style="border-right: none;">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.5 0-2.21-1.79-4-4-4-1.33 0-2.49.65-3.18 1.65L10 3.5l-.82-1.35C8.49 1.15 7.33.5 6 .5 3.79.5 2 2.29 2 4.5c0 .62.11 1.06.18 1.5H0v2h.5L2 19c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2l1.5-11H22V6h-2zm-3.18-1.5c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-9.64 0c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zM18 19H6l-1.35-11h14.7L18 19z"/></svg>
+        </div>
+        <div class="service-title">Шопинг-туры</div>
+        <div class="service-desc">Эксклюзивный шопинг в Милане, Париже, Дубае с личным стилистом и доступом к закрытым показам.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED TOURS -->
+<section id="tours">
+  <div class="tours-header">
+    <div>
+      <div class="section-eyebrow">Горящие туры</div>
+      <h2 class="section-title">Специальные<br><em>предложения</em></h2>
+    </div>
+    <a href="#" class="btn-ghost" style="flex-shrink:0;">Все туры →</a>
+  </div>
+  <div class="tours-grid">
+
+    <div class="tour-card">
+      <div class="tour-img">
+        <svg viewBox="0 0 600 240" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <rect width="600" height="240" fill="#0a1a2a"/>
+          <rect y="120" width="600" height="120" fill="#0d2a3a"/>
+          <!-- bali temples -->
+          <polygon points="220,50 240,50 250,120 210,120" fill="#2a1a0a"/>
+          <polygon points="225,40 230,25 235,40" fill="#3a2a0a"/>
+          <rect x="210" y="120" width="40" height="60" fill="#252010"/>
+          <polygon points="280,70 295,70 302,120 273,120" fill="#2a1a0a"/>
+          <polygon points="284,62 288,52 292,62" fill="#3a2a0a"/>
+          <rect x="273" y="120" width="30" height="60" fill="#252010"/>
+          <!-- rice terraces -->
+          <path d="M0,160 Q150,140 300,155 Q450,170 600,150 L600,240 L0,240 Z" fill="#1a2a0a"/>
+          <path d="M0,175 Q150,158 300,170 Q450,182 600,165 L600,240 L0,240 Z" fill="#152508"/>
+          <!-- lotus flowers -->
+          <circle cx="100" cy="185" r="8" fill="#C9973A" opacity="0.6"/>
+          <circle cx="500" cy="175" r="6" fill="#C9973A" opacity="0.5"/>
+          <!-- golden sunset -->
+          <ellipse cx="300" cy="120" rx="400" ry="60" fill="#C9973A" opacity="0.15"/>
+        </svg>
+        <span class="tour-badge">−20%</span>
+      </div>
+      <div class="tour-body">
+        <div class="tour-meta">
+          <span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            10 дней
+          </span>
+          <span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            до 6 чел.
+          </span>
+          <span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+            Бали
+          </span>
+        </div>
+        <div class="tour-name">Духовный Бали: храмы, рисовые поля и океан</div>
+        <div class="tour-desc">Путешествие в сердце Индонезии — медитации на рассвете, виллы с бассейном, аутентичная кухня и серфинг.</div>
+        <div class="tour-footer">
+          <div>
+            <div class="tour-price-label">Стоимость от</div>
+            <div class="tour-price-value">$3 800</div>
+          </div>
+          <button class="tour-book">Забронировать</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tour-card">
+      <div class="tour-img">
+        <svg viewBox="0 0 600 240" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <rect width="600" height="240" fill="#0a0a14"/>
+          <rect y="140" width="600" height="100" fill="#050510"/>
+          <!-- northern lights -->
+          <path d="M0,100 Q150,30 300,70 Q450,110 600,40 L600,0 L0,0 Z" fill="#0d4a2a" opacity="0.4"/>
+          <path d="M0,120 Q100,60 250,90 Q400,120 600,60 L600,0 L0,0 Z" fill="#0a3a4a" opacity="0.3"/>
+          <path d="M100,100 Q200,40 350,80 Q500,115 600,50 L600,140 L100,140 Z" fill="#2a0a4a" opacity="0.2"/>
+          <!-- snowy mountains -->
+          <polygon points="0,140 80,60 160,140" fill="#1a1a2a"/>
+          <polygon points="80,60 100,80 140,60 120,40 80,60" fill="#f0ede8" opacity="0.7"/>
+          <polygon points="100,140 200,80 300,140" fill="#1e1e2a"/>
+          <polygon points="200,80 220,95 260,78 240,65 200,80" fill="#f0ede8" opacity="0.6"/>
+          <polygon points="280,140 380,70 480,140" fill="#181828"/>
+          <polygon points="380,70 400,88 440,72 415,55 380,70" fill="#f0ede8" opacity="0.7"/>
+          <polygon points="420,140 520,90 600,140" fill="#1a1a2a"/>
+          <!-- stars -->
+          <circle cx="50" cy="20" r="1" fill="#ffffff" opacity="0.8"/>
+          <circle cx="180" cy="10" r="1.5" fill="#ffffff" opacity="0.9"/>
+          <circle cx="400" cy="25" r="1" fill="#ffffff" opacity="0.7"/>
+          <circle cx="550" cy="15" r="1" fill="#ffffff" opacity="0.8"/>
+          <circle cx="320" cy="5" r="1" fill="#ffffff" opacity="0.6"/>
+          <!-- cabin light -->
+          <rect x="250" y="120" width="30" height="20" fill="#1a1000"/>
+          <rect x="256" y="125" width="8" height="8" fill="#C9973A" opacity="0.8"/>
+        </svg>
+        <span class="tour-badge">Хит сезона</span>
+      </div>
+      <div class="tour-body">
+        <div class="tour-meta">
+          <span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            7 дней
+          </span>
+          <span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            2 чел.
+          </span>
+          <span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+            Норвегия
+          </span>
+        </div>
+        <div class="tour-name">Северное сияние: Норвегия в феврале</div>
+        <div class="tour-desc">Стеклянные иглу под звёздным небом, охота за полярным сиянием, фьорды и горячие источники Свальбарда.</div>
+        <div class="tour-footer">
+          <div>
+            <div class="tour-price-label">Стоимость от</div>
+            <div class="tour-price-value">$5 500</div>
+          </div>
+          <button class="tour-book">Забронировать</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tour-card">
+      <div class="tour-img">
+        <svg viewBox="0 0 600 240" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <rect width="600" height="240" fill="#1a0a0a"/>
+          <!-- safari sky -->
+          <rect width="600" height="140" fill="#1a1200"/>
+          <!-- sunset -->
+          <circle cx="300" cy="140" r="60" fill="#C9973A" opacity="0.4"/>
+          <circle cx="300" cy="140" r="40" fill="#E8B85A" opacity="0.3"/>
+          <!-- savanna -->
+          <rect y="140" width="600" height="100" fill="#1a1500"/>
+          <!-- acacia trees -->
+          <line x1="100" y1="140" x2="100" y2="100" stroke="#2a1a00" stroke-width="4"/>
+          <ellipse cx="100" cy="95" rx="40" ry="15" fill="#1a2a00"/>
+          <line x1="450" y1="140" x2="450" y2="90" stroke="#2a1a00" stroke-width="5"/>
+          <ellipse cx="450" cy="84" rx="55" ry="18" fill="#1a2a00"/>
+          <line x1="520" y1="140" x2="520" y2="105" stroke="#2a1a00" stroke-width="3"/>
+          <ellipse cx="520" cy="100" rx="35" ry="12" fill="#1a2a00"/>
+          <!-- elephant silhouette -->
+          <g transform="translate(220,110)">
+            <ellipse cx="40" cy="30" rx="40" ry="25" fill="#1a1000"/>
+            <ellipse cx="20" cy="18" rx="18" ry="18" fill="#1a1000"/>
+            <rect x="12" y="35" width="8" height="20" fill="#1a1000"/>
+            <rect x="25" y="38" width="8" height="20" fill="#1a1000"/>
+            <rect x="40" y="37" width="8" height="20" fill="#1a1000"/>
+            <rect x="53" y="36" width="8" height="20" fill="#1a1000"/>
+            <path d="M10,22 Q0,28 2,35 Q8,28 12,24" fill="#1a1000"/>
+            <path d="M30,10 L28,2" stroke="#1a1000" stroke-width="3"/>
+          </g>
+          <!-- dust/haze -->
+          <ellipse cx="300" cy="200" rx="300" ry="20" fill="#2a1a00" opacity="0.3"/>
+        </svg>
+        <span class="tour-badge">Эксклюзив</span>
+      </div>
+      <div class="tour-body">
+        <div class="tour-meta">
+          <span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            12 дней
+          </span>
+          <span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
+            2–4 чел.
+          </span>
+          <span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+            Кения
+          </span>
+        </div>
+        <div class="tour-name">Великая миграция: сафари в Масаи-Мара</div>
+        <div class="tour-desc">Наблюдать за великой миграцией с палубы роскошной летающей лодки — редкий опыт дикой природы.</div>
+        <div class="tour-footer">
+          <div>
+            <div class="tour-price-label">Стоимость от</div>
+            <div class="tour-price-value">$6 900</div>
+          </div>
+          <button class="tour-book">Забронировать</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tour-card">
+      <div class="tour-img">
+        <svg viewBox="0 0 600 240" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <rect width="600" height="240" fill="#0a1a2a"/>
+          <!-- ocean -->
+          <rect y="120" width="600" height="120" fill="#0d2a3a"/>
+          <!-- sky with clouds -->
+          <rect width="600" height="120" fill="#0a1a3a"/>
+          <ellipse cx="150" cy="60" rx="80" ry="25" fill="#1a2a4a"/>
+          <ellipse cx="450" cy="40" rx="100" ry="30" fill="#1a2a4a"/>
+          <!-- yacht -->
+          <g transform="translate(200,80)">
+            <polygon points="80,40 80,0 20,40" fill="#f0ede8"/>
+            <polygon points="80,40 80,5 140,40" fill="#e8e5e0"/>
+            <rect x="20" y="40" width="160" height="15" rx="3" fill="#1a1a1a"/>
+            <rect x="30" y="55" width="140" height="8" rx="2" fill="#252525"/>
+            <line x1="80" y1="0" x2="80" y2="55" stroke="#3a3a3a" stroke-width="2"/>
+          </g>
+          <!-- wake -->
+          <path d="M180,145 Q300,135 420,145" stroke="#4a8aaa" stroke-width="1" fill="none" opacity="0.4"/>
+          <path d="M160,150 Q300,142 440,150" stroke="#4a8aaa" stroke-width="0.5" fill="none" opacity="0.3"/>
+          <!-- islands in distance -->
+          <ellipse cx="100" cy="120" rx="60" ry="15" fill="#1a3a1a" opacity="0.5"/>
+          <ellipse cx="500" cy="118" rx="50" ry="12" fill="#1a3a1a" opacity="0.4"/>
+          <!-- sun glint on water -->
+          <line x1="200" y1="160" x2="400" y2="160" stroke="#C9973A" stroke-width="0.5" opacity="0.3"/>
+        </svg>
+        <span class="tour-badge">Новинка</span>
+      </div>
+      <div class="tour-body">
+        <div class="tour-meta">
+          <span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            14 дней
+          </span>
+          <span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
+            до 8 чел.
+          </span>
+          <span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+            Греция
+          </span>
+        </div>
+        <div class="tour-name">Яхтенный круиз по островам Греции</div>
+        <div class="tour-desc">Частная яхта, острова Санторини, Миконос, Родос. Мишленовская кухня на борту, дайвинг и закаты.</div>
+        <div class="tour-footer">
+          <div>
+            <div class="tour-price-label">Стоимость от</div>
+            <div class="tour-price-value">$8 200</div>
+          </div>
+          <button class="tour-book">Забронировать</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<div class="testimonials-section">
+  <section id="reviews">
+    <div class="section-eyebrow">Отзывы</div>
+    <h2 class="section-title">Что говорят наши<br><em>путешественники</em></h2>
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">«Мальдивы с BN Travel превзошли все ожидания. Вилла над водой, закат с шампанским и абсолютная тишина. Вернёмся снова.»</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">АН</div>
+          <div>
+            <div class="author-name">Алиса Новикова</div>
+            <div class="author-origin">Москва • Мальдивы 2024</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">«Сафари в Кении — это невозможно описать словами. Личный менеджер организовал всё до мелочей. Профессионализм высшего уровня.»</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">ДМ</div>
+          <div>
+            <div class="author-name">Дмитрий Малинин</div>
+            <div class="author-origin">Ташкент • Кения 2024</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">«Северное сияние в иглу — лучшее, что я видела в жизни. BN Travel создали невероятную программу, каждый день был открытием.»</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">ЕК</div>
+          <div>
+            <div class="author-name">Екатерина Карпова</div>
+            <div class="author-origin">Алматы • Норвегия 2025</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- BOOKING FORM -->
+<div class="booking-section" style="justify-content: center; display: flex; align-items: center;" id="booking">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5991.884766413776!2d69.25883828583412!3d41.33186622546797!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b7ec64d4dbd%3A0x6a26177af9d218c3!2sC-Space%20Labzak!5e0!3m2!1sru!2s!4v1781256951811!5m2!1sru!2s" width="600" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>  
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo" style="display:inline-flex;">
+        <div class="nav-logo-badge">BN</div>
+        <div class="nav-logo-text">
+          <strong>BN Travel</strong>
+          <span>Luxury Journeys</span>
+        </div>
+      </a>
+      <p>Премиальное туристическое агентство. Создаём уникальные путешествия с 2012 года. Работаем по всему миру.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Туры</h4>
+      <ul>
+        <li><a href="#">Горящие туры</a></li>
+        <li><a href="#">Медовый месяц</a></li>
+        <li><a href="#">Семейный отдых</a></li>
+        <li><a href="#">Бизнес-туры</a></li>
+        <li><a href="#">Групповые туры</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Направления</h4>
+      <ul>
+        <li><a href="#">Азия</a></li>
+        <li><a href="#">Европа</a></li>
+        <li><a href="#">Африка</a></li>
+        <li><a href="#">Океания</a></li>
+        <li><a href="#">Америка</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Контакты</h4>
+      <ul>
+        <li><a href="tel:+998712001234">+998 95 822 87 88</a></li>
+        <li><a href="mailto:info@bntravel.uz"></a></li>
+        <li><a href="https://t.me/bntravel_goryashiyturi">Telegram</a></li>
+        <li><a href="https://www.instagram.com/bntravel_uz?igsh=YWhlYnFmdHY2ZXdq&utm_source=qr">Instagram</a></li>
+
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 BN Travel. Все права защищены.</span>
+    
+  </div>
+</footer>
+
+</body>
+</html>
